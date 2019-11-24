@@ -21,6 +21,41 @@ const RestaurantSchema = new Schema({
     type: String,
     trim: true,
     default: "Appetizers"
+  },
+  userAppetizerOneName: {
+    type: String,
+    trim: true,
+    default: "Appetizer 1"
+  },
+  userAppetizerOneDescription: {
+    type: String,
+    trim: true,
+    default: "Use this space to describe the dish, including ingredients."
+  },
+  userAppetizerOnePrice: {
+    type: String,
+    trim: true,
+    default: "$9.95"
+  },
+  userHoursWeekday: {
+    type: String,
+    trim: true,
+    default: "5pm-10pm"
+  },
+  userHoursWeekend: {
+    type: String,
+    trim: true,
+    default: "4pm-11pm"
+  },
+  userRestaurantAddress: {
+    type: String,
+    trim: true,
+    default: "Your Restaurant Address",
+  },
+  userNumber: {
+    type: String,
+    trim: true,
+    default: "+00 000 000000",
   }
 });
 
