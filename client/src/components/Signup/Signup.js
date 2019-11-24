@@ -6,6 +6,8 @@ import API from "../../utils/API"
 import AuthService from "../AuthService";
 import { withRouter } from "react-router-dom";
 
+
+
 class Signup extends Component {
 
     constructor(props) {
@@ -20,7 +22,7 @@ class Signup extends Component {
     }
     componentDidMount() {
         if(this.Auth.loggedIn()){
-            this.props.history.replace("/"+this.Auth.getProfile().username);
+            this.props.history.push("/"+this.Auth.getProfile().username);
         }
     }
     handleInputChange = (event) => {
@@ -77,10 +79,25 @@ class Signup extends Component {
 
 
             API.registerUser(formData)
-            .then(alert("You created a user"))
+            .then(()=> {
+
+                let loginData ={
+                    email: formData.email,
+                    password: formData.password
+                }
+
+                this.Auth.login(loginData)
+                .then( res=>{
+                    this.props.history.push("/"+this.Auth.getProfile().username);
+                })
+                .catch(err =>{
+                    console.log(err);
+                })
+
+            })
             .catch(err => console.log(err))
 
-           window.location.reload();
+        //    window.location.reload();
 
         } else {
             this.setState({
