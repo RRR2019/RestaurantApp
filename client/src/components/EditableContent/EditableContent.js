@@ -21,13 +21,16 @@ class EditableContent extends Component {
         })
     }
     handleSubmit = () => {
+        console.log(this.props.propertyName);
+        console.log(this.state.inputData);
         API.saveEditableContent(this.Auth.getProfile().id, {[this.props.propertyName]:this.state.inputData})
         .then( data => {
             console.log(data);
             this.setState({
                 edit:false
             });
-            this.props.handleSubmit({[this.props.propertyName]:this.state.inputData});
+            this.props.handleSubmit(this.props.propertyName, this.state.inputData);
+            // this.props.handleSubmit({[this.props.propertyName]:this.state.inputData});
         })
         .catch(err => console.log(err));
     }
@@ -37,8 +40,8 @@ class EditableContent extends Component {
                 this.state.edit
                 ?
                 <div>
-                    <input type="text" onChange={this.handleChange}/>
-                    <button onClick={this.handleSubmit}>Save</button> 
+                    <input type="text" style={{backgroundColor: "black"}} onChange={this.handleChange}/>
+                    <button style={{backgroundColor:"black"}} onClick={this.handleSubmit}>Save</button> 
                 </div>
                 :
                 <div onClick={this.changeEditState}>

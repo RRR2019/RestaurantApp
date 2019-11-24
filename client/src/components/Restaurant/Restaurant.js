@@ -9,15 +9,73 @@ class Restaurants extends Component {
         this.Auth = new AuthService(); 
     }
     state={
-        restaurant: {},
-        edit: false
+        restaurant: {
+          // userRestaurantName:"",
+          // serRestaurantTagline:"",
+          // userRestaurantAboutText:"",
+          // userAppetizerHeader:""
+        },
+        edit: false,
+        reload: false
+        
     }
     
-    handleSubmit= (change) =>  {
-        this.setState({restaurant:change});
+    handleSubmit= (propertyName, propertyValue) =>  {
+    // handleSubmit= (change) =>  {
+        // var key1 = "restaurant."+ propertyName;
+        // console.log(key1);
+        // console.log(propertyValue);
+        console.log(this.state.restaurant);
+        // var Value1 = "restaurant."+ propertyValue;
+        // this.setState({restaurant.userRestaurantName:propertyValue});
+        // this.setState({$key1:propertyValue})
+        // const newValue = update(this.state.restaurant, {propertyName: {$set: propertyValue}});
+        // this.setState({
+        //   restaurant: newValue
+        // })
+
+        // const restProperty = {
+        //   [propertyName] : propertyValue
+        // }
+
+        var restaurant = {...this.state.restaurant}
+        // restaurant.[propertyName] = propertyValue;
+        restaurant.userRestaurantName = propertyValue;
+        this.setState({restaurant});
+
+
+          // const { restaurant } = { ...this.state };
+          // const currentState = restaurant;
+          // const { name, value } = change.target;
+          // currentState[name] = value;
+        
+          // this.setState({ restaurant: currentState });
+
+        // onChange(e) { 
+        //   const { user } = { ...this.state };
+        //   const currentState = user;
+        //   const { name, value } = e.target;
+        //   currentState[name] = value;
+        
+        //   this.setState({ user: currentState });
+        // }
+
+        // var someProperty = {...this.state.someProperty}
+        // someProperty.flag = true;
+        // this.setState({someProperty})
+
+
+        console.log("after");
+        console.log(this.state.restaurant);
+        // this.setState({restaurant:change})
+        // this.setState({reload:true})
+        //   if(this.state.reload){
+        //     this.props.history.push("/"+this.Auth.getProfile().username);
     }
+
     componentDidMount() {
         API.getRestaurant(this.props.match.params.username).then(({data}) => {
+            console.log("Data from database");
             console.log(data);
             if (this.Auth.loggedIn) this.setState({restaurant: data.restaurant, edit: data.id === this.Auth.getProfile().id});
             else this.setState({restaurant: data.restaurant, edit: false});
@@ -104,7 +162,9 @@ class Restaurants extends Component {
                 <EditableContent handleSubmit={this.handleSubmit} propertyName="userRestaurantName">
                     {this.state.restaurant.userRestaurantName}
                 </EditableContent>
-                <p id="userRestaurantTagline1"><span>Add a tagline to draw customers in!</span></p>
+                <EditableContent handleSubmit={this.handleSubmit} propertyName="userRestaurantTagline">
+                    {this.state.restaurant.userRestaurantTagline}
+                </EditableContent>
               </div>
             </div>
           </div>
