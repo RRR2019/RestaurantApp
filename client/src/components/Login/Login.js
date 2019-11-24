@@ -25,9 +25,8 @@ class Login extends Component {
 
     componentWillMount(){
         if(this.Auth.loggedIn()){
-            this.props.history.replace('/register');
+            this.props.history.replace("/"+this.Auth.getProfile().username);
         }
-        
     }
 
     handleInputChange = (event) => {

@@ -1,9 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { withRouter } from 'react-router-dom';
-import Register from './components/Register/Register'
-import Authenticate from './components/Authenticate/Authenticate'
-import Restaurants from './components/Restaurant/Restaurant'
+import { BrowserRouter as Router, Switch} from "react-router-dom";
+import { Route, withRouter } from 'react-router-dom';
+import Register from './components/Register/Register';
+import Authenticate from './components/Authenticate/Authenticate';
+import Restaurants from './components/Restaurant/Restaurant';
 
 
 function App() {
@@ -11,10 +11,9 @@ function App() {
 	  <Router>
 		<div>
 		  <Switch>
-		  	<Route exact path="/" component={withRouter(Restaurants)} />
-			<Route exact path="/register" component={Register} />
-			<Route exact path="/login" component={withRouter(Authenticate)} />
-			<Route exact path="/restaurants" component={Restaurants} />
+		  	<Route exact path="/" component={withRouter(Authenticate)} />
+			<Route exact path="/register" component={withRouter(Register)} />
+			<Route path="/:username" component={withRouter(Restaurants)} />
 		  </Switch>
 		</div>
 	  </Router>

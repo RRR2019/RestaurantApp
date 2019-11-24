@@ -3,12 +3,14 @@ import { Row, FormGroup, FormControl, ControlLabel, Button, HelpBlock } from 're
 import './signup.css';
 import { isEmail, isEmpty, isLength, isContainWhiteSpace } from "../../shared/validator";
 import API from "../../utils/API"
+import AuthService from "../AuthService";
+import { withRouter } from "react-router-dom";
 
 class Signup extends Component {
 
     constructor(props) {
         super(props)
-
+        this.Auth = new AuthService();
         this.state = {
             formData: {}, // Contains login form data
             errors: {}, // Contains login field errors
@@ -16,7 +18,11 @@ class Signup extends Component {
             loading: false // Indicates in progress state of login form
         }
     }
-
+    componentDidMount() {
+        if(this.Auth.loggedIn()){
+            this.props.history.replace("/"+this.Auth.getProfile().username);
+        }
+    }
     handleInputChange = (event) => {
         const target = event.target;
         const value = target.value;
@@ -124,4 +130,4 @@ class Signup extends Component {
     }
 }
 
-export default Signup;
+export default withRouter(Signup);

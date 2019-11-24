@@ -1,30 +1,41 @@
 import React, { Component } from "react";
 import AuthService from '../AuthService';
-import withAuth from '../withAuth';
-import decode from 'jwt-decode';
-const Auth = new AuthService();
+import API from "../../utils/API";
+import EditableContent from "../EditableContent/EditableContent";
 
-class Restaurants extends Component{
-    
+class Restaurants extends Component {
+    constructor(props) {
+        super(props);
+        this.Auth = new AuthService(); 
+    }
     state={
-        restaurants: [],
-        userID: ""
+        restaurant: {},
+        edit: false
     }
     
+    handleSubmit= (change) =>  {
+        this.setState({restaurant:change});
+    }
     componentDidMount() {
-
-        const token = localStorage.getItem('id_token');
-        const decoded = decode(token);
-        console.log(decoded)
-        this.setState({userID: decoded.id})
+        API.getRestaurant(this.props.match.params.username).then(({data}) => {
+            console.log(data);
+            if (this.Auth.loggedIn) this.setState({restaurant: data.restaurant, edit: data.id === this.Auth.getProfile().id});
+            else this.setState({restaurant: data.restaurant, edit: false});
+            setTimeout(() => console.log(this.state), 3000)
+        })
+        .catch(err => console.log(err));
     }
 
 
     handleLogout(){
-        Auth.logout()
-        this.props.history.replace('/login');
+        this.Auth.logout();
+        this.props.history.replace('/');
      }
-
+     updateRestaurantName() {
+         this.setState({restaurantEdit:{
+             userRestaurantName: true
+         }})
+     }
 
 
     render() {
@@ -68,7 +79,8 @@ class Restaurants extends Component{
                 <li><a href="#reservation">Reservations</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <div dangerouslySetInnerHTML={ {__html: "<button className='edit-btn' id='userEdit' onclick='editFunction(id)' type='submit' name='submit' value='Edit'> Edit</button>"} } />
+                {this.state.edit ? ( <div dangerouslySetInnerHTML={ {__html: "<button className='edit-btn' id='userEdit' onclick='editFunction(id)' type='submit' name='submit' value='Edit'> Edit</button>"} } />) : null}
+               
                 
             </ul>
             
@@ -89,7 +101,9 @@ class Restaurants extends Component{
           <div className="item active"> <img src="assets/img/slider/slider_01.jpg" className="img-responsive"/>
             <div className="container">
               <div className="carousel-caption">
-                <h1 id="userRestaurantName1"><span>Name of Your Restaurant Goes Here</span></h1>
+                <EditableContent handleSubmit={this.handleSubmit} propertyName="userRestaurantName">
+                    {this.state.restaurant.userRestaurantName}
+                </EditableContent>
                 <p id="userRestaurantTagline1"><span>Add a tagline to draw customers in!</span></p>
               </div>
             </div>
@@ -411,4 +425,4 @@ class Restaurants extends Component{
 
 }
 
-export default withAuth(Restaurants);
+export default Restaurants;
