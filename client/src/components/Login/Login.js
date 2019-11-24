@@ -25,7 +25,7 @@ class Login extends Component {
 
     componentWillMount(){
         if(this.Auth.loggedIn()){
-            this.props.history.replace("/"+this.Auth.getProfile().username);
+            this.props.history.push("/"+this.Auth.getProfile().username);
         }
     }
 
@@ -75,7 +75,7 @@ class Login extends Component {
 
             this.Auth.login(formData)
             .then( res=>{
-                this.props.history.replace('/')
+                this.props.history.push("/"+this.Auth.getProfile().username);
             })
             .catch(err =>{
                 console.log(err);
@@ -160,7 +160,8 @@ class Login extends Component {
                             <HelpBlock>{errors.password}</HelpBlock>
                         }
                         </FormGroup>
-                        <Button bsStyle="primary" onClick={this.login} href="/restaurants">Log In!</Button>
+                        <Button bsStyle="primary" onClick={this.login} href="/:username">Log In!</Button>
+                        <Button bsStyle="secondary"  href="/register">Register!</Button>
                         <p>{this.state.message}</p>
 
                     </div>
