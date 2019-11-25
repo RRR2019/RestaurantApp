@@ -21,56 +21,15 @@ class Restaurants extends Component {
     }
     
     handleSubmit= (propertyName, propertyValue) =>  {
-    // handleSubmit= (change) =>  {
-        // var key1 = "restaurant."+ propertyName;
-        // console.log(key1);
-        // console.log(propertyValue);
         console.log(this.state.restaurant);
-        // var Value1 = "restaurant."+ propertyValue;
-        // this.setState({restaurant.userRestaurantName:propertyValue});
-        // this.setState({$key1:propertyValue})
-        // const newValue = update(this.state.restaurant, {propertyName: {$set: propertyValue}});
-        // this.setState({
-        //   restaurant: newValue
-        // })
-
-        // const restProperty = {
-        //   [propertyName] : propertyValue
-        // }
 
         var restaurant = {...this.state.restaurant}
-        // restaurant.[propertyName] = propertyValue;
-        restaurant.userRestaurantName = propertyValue;
+        var key = propertyName;
+        restaurant[key] = propertyValue;
         this.setState({restaurant});
-
-
-          // const { restaurant } = { ...this.state };
-          // const currentState = restaurant;
-          // const { name, value } = change.target;
-          // currentState[name] = value;
-        
-          // this.setState({ restaurant: currentState });
-
-        // onChange(e) { 
-        //   const { user } = { ...this.state };
-        //   const currentState = user;
-        //   const { name, value } = e.target;
-        //   currentState[name] = value;
-        
-        //   this.setState({ user: currentState });
-        // }
-
-        // var someProperty = {...this.state.someProperty}
-        // someProperty.flag = true;
-        // this.setState({someProperty})
-
 
         console.log("after");
         console.log(this.state.restaurant);
-        // this.setState({restaurant:change})
-        // this.setState({reload:true})
-        //   if(this.state.reload){
-        //     this.props.history.push("/"+this.Auth.getProfile().username);
     }
 
     componentDidMount() {
@@ -159,11 +118,11 @@ class Restaurants extends Component {
           <div className="item active"> <img src="assets/img/slider/slider_01.jpg" className="img-responsive"/>
             <div className="container">
               <div className="carousel-caption">
-                <EditableContent handleSubmit={this.handleSubmit} propertyName="userRestaurantName">
-                    {this.state.restaurant.userRestaurantName}
+                <EditableContent handleSubmit={this.handleSubmit} propertyName="userRestaurantName" restaurantObject={this.state.restaurant}>
+                <h1>{this.state.restaurant.userRestaurantName}</h1>
                 </EditableContent>
-                <EditableContent handleSubmit={this.handleSubmit} propertyName="userRestaurantTagline">
-                    {this.state.restaurant.userRestaurantTagline}
+                <EditableContent handleSubmit={this.handleSubmit} propertyName="userRestaurantTagline" restaurantObject={this.state.restaurant}>
+                <p>{this.state.restaurant.userRestaurantTagline}</p>
                 </EditableContent>
               </div>
             </div>
@@ -171,16 +130,20 @@ class Restaurants extends Component {
           <div className="item"> <img src="assets/img/slider/slider_02.jpg" className="img-responsive"/>
             <div className="container">
               <div className="carousel-caption">
-                <h1 id="userRestaurantName2"><span>Name of Your Restaurant Goes Here</span></h1>
-                <p id="userRestaurantTagline2"><span>Add a tagline to draw customers in!</span></p>
+                <h1>{this.state.restaurant.userRestaurantName}</h1>
+                {/* <h1 id="userRestaurantName2"><span>Name of Your Restaurant Goes Here</span></h1> */}
+                <p>{this.state.restaurant.userRestaurantTagline}</p>
+                {/* <p id="userRestaurantTagline2"><span>Add a tagline to draw customers in!</span></p> */}
               </div>
             </div>
           </div>
           <div className="item"> <img src="assets/img/slider/slider_03.jpg" className="img-responsive"/>
             <div className="container">
               <div className="carousel-caption">
-                <h1 id="userRestaurantName3"><span>Name of Your Restaurant Goes Here</span></h1>
-                <p id="userRestaurantTagline3"><span>Add a tagline to draw customers in!</span></p>
+              <h1>{this.state.restaurant.userRestaurantName}</h1>
+                {/* <h1 id="userRestaurantName3"><span>Name of Your Restaurant Goes Here</span></h1> */}
+                <p>{this.state.restaurant.userRestaurantTagline}</p>
+                {/* <p id="userRestaurantTagline3"><span>Add a tagline to draw customers in!</span></p> */}
               </div>
             </div>
           </div>
@@ -198,19 +161,23 @@ class Restaurants extends Component {
       <div className="gap"></div>
       <div className="col-md-6">
         <div className="about-content">
-          <h4>Welcome to <span id="userRestaurantName4">Name of Your Restaurant Goes Here</span></h4>
-          <p id="userRestaurantAboutText1">Lorem ipsum dolor sit amet sale referrentur Aliquid abhorreant cu vim, veri cetero e mel
+          Welcome to <span>{this.state.restaurant.userRestaurantName}</span>
+          {/* <h4>Welcome to <span id="userRestaurantName4">Name of Your Restaurant Goes Here</span></h4> */}
+          <EditableContent handleSubmit={this.handleSubmit} propertyName="userRestaurantAboutText" restaurantObject={this.state.restaurant}>
+            <p>{this.state.restaurant.userRestaurantAboutText}</p>
+          </EditableContent>
+          {/* <p id="userRestaurantAboutText1">Lorem ipsum dolor sit amet sale referrentur Aliquid abhorreant cu vim, veri cetero e mel
             sea ne nostro communet veri eripuit Lorem ipsum dolor sit amet sale referrentur Aliquid abhorreant cu vim,
             veri cetero e mel sea ne nostro communet veri eripuit Lorem ipsum dolor sit amet sale referrentur Aliquid
-            abhorreant cu vim, veri cetero e mel sea ne nostro communet veri eripuit </p>
-          <p id="userRestaurantAboutText2">Lorem ipsum dolor sit amet sale referrentur Aliquid abhorreant cu vim, veri cetero e mel
+            abhorreant cu vim, veri cetero e mel sea ne nostro communet veri eripuit </p> */}
+          {/* <p id="userRestaurantAboutText2">Lorem ipsum dolor sit amet sale referrentur Aliquid abhorreant cu vim, veri cetero e mel
             sea ne nostro communet veri eripuit Lorem ipsum dolor sit amet sale referrentur Aliquid abhorreant cu vim,
             veri cetero e mel sea ne nostro communet veri eripuit Lorem ipsum dolor sit amet sale referrentur Aliquid
             abhorreant cu vim, veri cetero e mel sea ne nostro communet veri eripuit </p>
           <p id="userRestaurantAboutText3">Lorem ipsum dolor sit amet sale referrentur Aliquid abhorreant cu vim, veri cetero e mel
             sea ne nostro communet veri eripuit Lorem ipsum dolor sit amet sale referrentur Aliquid abhorreant cu vim,
             veri cetero e mel sea ne nostro communet veri eripuit Lorem ipsum dolor sit amet sale referrentur Aliquid
-            abhorreant cu vim, veri cetero e mel sea ne nostro communet veri eripuit </p>
+            abhorreant cu vim, veri cetero e mel sea ne nostro communet veri eripuit </p> */}
         </div>
       </div>
       <div className="col-md-6">
@@ -228,7 +195,10 @@ class Restaurants extends Component {
           <div className="clearfix"></div>
           <div className="title-line"></div>
           <ul id="filters" className="clearfix">
-            <li><span id="userAppetizerHeader" className="filter" data-filter=".Appetizers">Appetizers</span></li>
+            <EditableContent handleSubmit={this.handleSubmit} propertyName="userAppetizerHeader" restaurantObject={this.state.restaurant}>
+            <li><span className="filter" data-filter=".Appetizers">{this.state.restaurant.userAppetizerHeader}</span></li>
+            </EditableContent>
+            {/* <li><span id="userAppetizerHeader" className="filter" data-filter=".Appetizers">Appetizers</span></li> */}
             <li><span id="userSaladsHeader" className="filter" data-filter=".Salads">Soup and Salads</span></li>
             <li><span id="userMainsHeader" className="filter" data-filter=".Soups">Mains</span></li>
             <li><span id="userDessertsHeader" className="filter" data-filter=".Fried-Rice-Dishes">Desserts</span></li>

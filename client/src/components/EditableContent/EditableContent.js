@@ -23,14 +23,20 @@ class EditableContent extends Component {
     handleSubmit = () => {
         console.log(this.props.propertyName);
         console.log(this.state.inputData);
-        API.saveEditableContent(this.Auth.getProfile().id, {[this.props.propertyName]:this.state.inputData})
+        console.log("Inside Handle Submit");
+        console.log(this.props.restaurantObject);
+
+        this.props.restaurantObject[this.props.propertyName] = this.state.inputData;
+
+        API.saveEditableContent(this.Auth.getProfile().id, this.props.restaurantObject)
+        // API.saveEditableContent(this.Auth.getProfile().id, {[this.props.propertyName]:this.state.inputData}) - Original code
         .then( data => {
             console.log(data);
             this.setState({
                 edit:false
             });
             this.props.handleSubmit(this.props.propertyName, this.state.inputData);
-            // this.props.handleSubmit({[this.props.propertyName]:this.state.inputData});
+            // this.props.handleSubmit({[this.props.propertyName]:this.state.inputData}); - Original Code
         })
         .catch(err => console.log(err));
     }
