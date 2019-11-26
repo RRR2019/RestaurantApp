@@ -21,8 +21,7 @@ class Restaurants extends Component {
           // userRestaurantAboutText:"",
           // userAppetizerHeader:""
         },
-        edit: false,
-        reload: false
+        edit: false
         
     }
     
@@ -38,13 +37,43 @@ class Restaurants extends Component {
         console.log(this.state.restaurant);
     }
 
+
+  //   componentDidMount() {
+  //     if (this.Auth.loggedIn) {
+  //     API.getRestaurant(this.props.match.params.username).then(({data}) => {
+  //         console.log("Data from database");
+  //         console.log(data);
+  //           this.setState({restaurant: data.restaurant, edit: data.id === this.Auth.getProfile().id});
+  //           console.log(this.state)
+  //         })
+  //         .catch(err => console.log(err));
+  //         }
+        
+  //         else {
+  //           API.getUserRestaurant(this.props.match.params.username).then(({data}) => {
+  //             console.log("Data from database");
+  //             console.log(data);
+  //           this.setState({restaurant: data.restaurant, edit: false});
+  //         console.log(this.state)
+  //       })
+  //       .catch(err => console.log(err));
+  //       }
+  //       setTimeout(() => console.log(this.state), 3000)
+  // }
+
     componentDidMount() {
         API.getRestaurant(this.props.match.params.username).then(({data}) => {
             console.log("Data from database");
             console.log(data);
-            if (this.Auth.loggedIn) this.setState({restaurant: data.restaurant, edit: data.id === this.Auth.getProfile().id});
-            else this.setState({restaurant: data.restaurant, edit: false});
-            setTimeout(() => console.log(this.state), 3000)
+            if (this.Auth.loggedIn) {
+              this.setState({restaurant: data.restaurant, edit: data.id === this.Auth.getProfile().id});
+              console.log(this.state)
+            }
+            else {
+              this.setState({restaurant: data.restaurant, edit: false});
+            console.log(this.state)
+          }
+            // setTimeout(() => console.log(this.state), 3000)
         })
         .catch(err => console.log(err));
     }
