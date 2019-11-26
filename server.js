@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static("public"));
 
 app.get('/', function(req, res){
-res.json({"tutorial" : "Build REST API with node.js"});
+res.json({"Appetizer" : "Template API"});
 });
 
 // public route
@@ -31,6 +31,7 @@ app.use(routes)
 app.use('/api', validateUser, restaurants);
 
 restaurantroute(app);
+
 
 app.get('/favicon.ico', function(req, res) {
     res.sendStatus(204);

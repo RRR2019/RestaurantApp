@@ -4,6 +4,18 @@ var dbRestaurant = require("../../models/restaurants");
 // =============================================================
 module.exports = function(app) {
 
+  // app.get("/user/restaurant/:username", (req, res, next) {
+  //   dbRestaurant
+  //     .find({ username: req.params.username })
+  //     .then(dbRestaurant => {
+  //       console.log(dbRestaurant);
+  //       res.json(dbRestaurant);
+  //     })
+  //     .catch(err => {
+  //       res.json(err);
+  //     })
+  //   },
+
   app.get("/customrestaurantdata/:username", (req, res) => {
     console.log("Inside get route");
     console.log(req.params.username);

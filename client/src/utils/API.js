@@ -21,7 +21,7 @@ export default {
     },
 
     getRestaurant: function (username){
-        return axios.get("/api/users/restaurant/"+username);
+        return axios.get("api/user/restaurant/"+username);
     },
 
     saveEditableContent: function (userId,body) {

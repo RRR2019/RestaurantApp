@@ -31,11 +31,13 @@ else{
         }
     });
  },
+
  getRestaurantAndPermissions: function(req, res, next) {
     userModel.findOne({name:req.params.username}, function(err, userInfo){
         res.json({restaurant: userInfo.restaurant, id: userInfo._id})
     })
  },
+ 
  customizeRestaurant: function(req, res, next) {
     console.log("inside update name route");
     console.log(req.body, req.params.userid);
