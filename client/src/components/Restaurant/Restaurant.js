@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import AuthService from '../AuthService';
 import API from "../../utils/API";
 import EditableContent from "../EditableContent/EditableContent";
+import 'client/public/custom.css'; // here is where the styling magic happens
+import 'client/public/menu.css';
+import 'client/public/owl.carousel.css';
+import 'client/public/bootstrap.min.css';
+import 'client/public/font-awesome.min.css';
+
 
 class Restaurants extends Component {
     constructor(props) {
@@ -98,7 +104,7 @@ class Restaurants extends Component {
           <li data-slide-to="2" data-target="#myCarousel" className=""></li>
         </ol>
         <div role="listbox" className="carousel-inner">
-          <div className="item active"> <img src="assets/img/slider/slider_01.jpg" className="img-responsive"/>
+          <div className="item active"> <img src="public/assets/img/slider/breakfast.jpeg" className="img-responsive"/>
             <div className="container">
               <div className="carousel-caption">
                 <EditableContent handleSubmit={this.handleSubmit} propertyName="userRestaurantName">
@@ -108,7 +114,7 @@ class Restaurants extends Component {
               </div>
             </div>
           </div>
-          <div className="item"> <img src="assets/img/slider/slider_02.jpg" className="img-responsive"/>
+          <div className="item"> <img src="public/assets/img/slider/lobsterroll.jpg" className="img-responsive"/>
             <div className="container">
               <div className="carousel-caption">
                 <h1 id="userRestaurantName2"><span>Name of Your Restaurant Goes Here</span></h1>
@@ -116,7 +122,7 @@ class Restaurants extends Component {
               </div>
             </div>
           </div>
-          <div className="item"> <img src="assets/img/slider/slider_03.jpg" className="img-responsive"/>
+          <div className="item"> <img src="public/assets/img/slider/burger.jpg" className="img-responsive"/>
             <div className="container">
               <div className="carousel-caption">
                 <h1 id="userRestaurantName3"><span>Name of Your Restaurant Goes Here</span></h1>
@@ -154,7 +160,7 @@ class Restaurants extends Component {
         </div>
       </div>
       <div className="col-md-6">
-        <div className="about-content"> <img src="assets/img/about_thum.jpg" className="img-responsive" id="userAboutImage"/>
+        <div className="about-content"> <img src="public/assets/img/waiter.jpg" className="img-responsive" id="userAboutImage"/>
         </div>
       </div>
     </div>
@@ -322,7 +328,7 @@ class Restaurants extends Component {
       <div id="testimonials-Carousel" className="carousel slide" data-ride="carousel">
         <div className="carousel-inner" role="listbox">
           <div className="item active">
-            <div className="container text-center"> <img src="assets/img/testimonials/1.jpg"/>
+            <div className="container text-center"> <img src="public/assets/img/testimonials/patron2.jpeg"/>
               <div className="carousel-caption quote-test">
                 <p>Lorem ipsum dolor sit amet sale referrentur Aliquid abhorreant cu vim, veri cetero e mel sea ne
                   nostro communet veri eripuit Lorem ipsum dolor sit amet sale referrentur Aliquid abhorreant cu vim,
@@ -333,7 +339,7 @@ class Restaurants extends Component {
             </div>
           </div>
           <div className="item">
-            <div className="container text-center"> <img src="assets/img/testimonials/2.jpg"/>
+            <div className="container text-center"> <img src="public/assets/img/testimonials/patron3.jpeg"/>
               <div className="carousel-caption quote-test">
                 <p>Lorem ipsum dolor sit amet sale referrentur Aliquid abhorreant cu vim, veri cetero e mel sea ne
                   nostro communet veri eripuit Lorem ipsum dolor sit amet sale referrentur Aliquid abhorreant cu vim,
@@ -344,7 +350,7 @@ class Restaurants extends Component {
             </div>
           </div>
           <div className="item">
-            <div className="container text-center"> <img src="assets/img/testimonials/3.jpg"/>
+            <div className="container text-center"> <img src="public/assets/img/testimonials/patron4.jpeg"/>
               <div className="carousel-caption quote-test">
                 <p>Lorem ipsum dolor sit amet sale referrentur Aliquid abhorreant cu vim, veri cetero e mel sea ne
                   nostro communet veri eripuit Lorem ipsum dolor sit amet sale referrentur Aliquid abhorreant cu vim,
