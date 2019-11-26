@@ -24,6 +24,9 @@
     "nodemon": "^1.18.7",
     "webpack-dev-server": "^3.9.0"
   },
+  "engines": { 
+    "node": "10.16.0" 
+ },
   "bugs": {
     "url": "https://github.com/RRR2019/passport-login/issues"
   },
