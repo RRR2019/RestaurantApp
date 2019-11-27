@@ -55,8 +55,12 @@ const RestaurantSchema = new Schema({
   userNumber: {
     type: String,
     trim: true,
-    default: "+00 000 000000",
-  }
+    default: "000 000 00000",
+  },
+  userEmail: {
+    type: String,
+    trim: true,
+    default: "info@myrestaurant.com",
+  },
 });
-
 module.exports = RestaurantSchema;

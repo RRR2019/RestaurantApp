@@ -1,9 +1,28 @@
 #Login {
     margin: 0 auto;
     border-style: solid;
+    border-color: rgb(228, 77, 77);
     margin-top: 70px;
     max-width: 400px;
     padding: 40px 40px;
     background: #fff
-    m
+    
+}
+
+#jumbo {
+    background-color: rgb(84, 136, 247);
+
+}
+
+h1{
+    font-family: 'Lobster', cursive;
+}
+
+#login{
+    background-color: rgb(84, 136, 247);
+    color: white; 
+}
+
+#reg{
+    color: rgb(84, 136, 247);
 }

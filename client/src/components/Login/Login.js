@@ -5,6 +5,7 @@ import { isEmail, isEmpty } from "../../shared/validator";
 // import API from "../../utils/API"
 import { withRouter } from 'react-router-dom';
 import AuthService from '../AuthService';
+import { Jumbotron } from 'reactstrap';
 
 class Login extends Component {
 
@@ -23,9 +24,9 @@ class Login extends Component {
         this.login = this.login.bind(this);
     }
 
-    componentWillMount(){
-        if(this.Auth.loggedIn()){
-            this.props.history.push("/"+this.Auth.getProfile().username);
+    componentWillMount() {
+        if (this.Auth.loggedIn()) {
+            this.props.history.push("/" + this.Auth.getProfile().username);
         }
     }
 
@@ -55,7 +56,7 @@ class Login extends Component {
 
         if (isEmpty(formData.password)) {
             errors.password = "Password can't be blank";
-        }  
+        }
 
         if (isEmpty(errors)) {
             return true;
@@ -70,34 +71,34 @@ class Login extends Component {
 
         let errors = this.validateLoginForm();
 
-        if(errors === true){
+        if (errors === true) {
             const { formData } = this.state;
 
             this.Auth.login(formData)
-            .then( res=>{
-                this.props.history.push("/"+this.Auth.getProfile().username);
-            })
-            .catch(err =>{
-                console.log(err);
-            })
-    }
+                .then(res => {
+                    this.props.history.push("/" + this.Auth.getProfile().username);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        }
 
-            // API.authenticateUser(formData)
-            // .then(
-            //     res => {
-            //         if(res.data.status === "error"){
-            //             this.setState({message: "Invalid email or password"})
-            //         }
-            //         if(res.data.status === "success"){
-            //             // console.log(res.data.data.token);
-            //             this.setState({message: res.data.message})
-            //             this.setToken(res.data.data.token) // Setting the token in localStorage
-            //             return Promise.resolve(res);
-            //         }                                     
-            //     })
-            //     .catch(err => console.log(err))
-         
-        
+        // API.authenticateUser(formData)
+        // .then(
+        //     res => {
+        //         if(res.data.status === "error"){
+        //             this.setState({message: "Invalid email or password"})
+        //         }
+        //         if(res.data.status === "success"){
+        //             // console.log(res.data.data.token);
+        //             this.setState({message: res.data.message})
+        //             this.setToken(res.data.data.token) // Setting the token in localStorage
+        //             return Promise.resolve(res);
+        //         }                                     
+        //     })
+        //     .catch(err => console.log(err))
+
+
         else {
             this.setState({
                 errors: errors,
@@ -142,33 +143,40 @@ class Login extends Component {
         const { errors, formSubmitted } = this.state;
 
         return (
-            <div id="Login" >
-                <Row>
-                    <div>
-                    
-                        <FormGroup controlId="email" validationState={ formSubmitted ? (errors.email ? 'error' : 'success') : null }>
-                            <ControlLabel>Email</ControlLabel>
-                            <FormControl type="text" name="email" placeholder="Enter your email" onChange={this.handleInputChange} />
-                        { errors.email &&
-                            <HelpBlock>{errors.email}</HelpBlock>
-                        }
-                        </FormGroup>
-                        <FormGroup controlId="password" validationState={ formSubmitted ? (errors.password ? 'error' : 'success') : null }>
-                            <ControlLabel>Password</ControlLabel>
-                            <FormControl type="password" name="password" placeholder="Enter your password" onChange={this.handleInputChange} />
-                        { errors.password &&
-                            <HelpBlock>{errors.password}</HelpBlock>
-                        }
-                        </FormGroup>
-                        <Button bsStyle="primary" onClick={this.login} href="/:username">Log In!</Button>
-                        <Button bsStyle="secondary"  href="/register">Register!</Button>
-                        <p>{this.state.message}</p>
+            <div id="Login">
 
-                    </div>
-                </Row>
-            </div>
-        )
-    }
-}
+                <div>
+                    <Jumbotron id="jumbo">
+                        <h1>Appetizer</h1>
+                        <p>Build your own restaurant site!</p>
+                    </Jumbotron>
+                    <Row>
+                        <div>
 
+                            <FormGroup controlId="email" validationState={formSubmitted ? (errors.email ? 'error' : 'success') : null}>
+                                <ControlLabel>Email</ControlLabel>
+                                <FormControl type="text" name="email" placeholder="Enter your email" onChange={this.handleInputChange} />
+                                {errors.email &&
+                                    <HelpBlock>{errors.email}</HelpBlock>
+                                }
+                            </FormGroup>
+                            <FormGroup controlId="password" validationState={formSubmitted ? (errors.password ? 'error' : 'success') : null}>
+                                <ControlLabel>Password</ControlLabel>
+                                <FormControl type="password" name="password" placeholder="Enter your password" onChange={this.handleInputChange} />
+                                {errors.password &&
+                                    <HelpBlock>{errors.password}</HelpBlock>
+                                }
+                            </FormGroup>
+                            <Button id="login" bsStyle="primary" onClick={this.login} href="/:username">Log In!</Button>
+                            <Button id="reg" bsStyle="secondary" href="/register">Register!</Button>
+                            <p>{this.state.message}</p>
+
+                        </div>
+                    </Row>
+                </div>
+                </div>
+                )
+            }
+        }
+        
 export default withRouter(Login);
