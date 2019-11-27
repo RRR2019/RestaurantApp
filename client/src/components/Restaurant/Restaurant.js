@@ -14,6 +14,13 @@ class Restaurants extends Component {
           // serRestaurantTagline:"",
           // userRestaurantAboutText:"",
           // userAppetizerHeader:""
+          // userAppetizerOneName:"",
+          // userAppetizerOneDescription:"",
+          // userAppetizerOnePrice:"",
+          // userRestaurantAddress:"",
+          // userNumber:"",
+          // userEmail:""
+
         },
         edit: false,
         reload: false
@@ -72,7 +79,8 @@ class Restaurants extends Component {
             </div>
           </div>
           <div className="col-md-4 col-sm-4">
-            <div className="top-call" id="userNumber"> <i className="fa fa-phone" aria-hidden="true"></i> 0000 000 0000 </div>
+            <span className="fa fa-phone top-call" aria-hidden="true">{this.state.restaurant.userNumber}</span>
+            {/* <div className="top-call" id="userNumber"> <i className="fa fa-phone" aria-hidden="true"></i>000 000 00000</div> */}
           </div>
         </div>
       </div>
@@ -97,10 +105,7 @@ class Restaurants extends Component {
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact</a></li>
                 {this.state.edit ? ( <div dangerouslySetInnerHTML={ {__html: "<button className='edit-btn' id='userEdit' onclick='editFunction(id)' type='submit' name='submit' value='Edit'> Edit</button>"} } />) : null}
-               
-                
-            </ul>
-            
+            </ul> 
         </div>
         </nav>
       </div>
@@ -119,10 +124,11 @@ class Restaurants extends Component {
             <div className="container">
               <div className="carousel-caption">
                 <EditableContent handleSubmit={this.handleSubmit} propertyName="userRestaurantName" restaurantObject={this.state.restaurant}>
-                <h1>{this.state.restaurant.userRestaurantName}</h1>
+                <h1 className="carousel-caption">{this.state.restaurant.userRestaurantName}</h1>
                 </EditableContent>
+
                 <EditableContent handleSubmit={this.handleSubmit} propertyName="userRestaurantTagline" restaurantObject={this.state.restaurant}>
-                <p>{this.state.restaurant.userRestaurantTagline}</p>
+                <p className="carousel-caption">{this.state.restaurant.userRestaurantTagline}</p>
                 </EditableContent>
               </div>
             </div>
@@ -130,9 +136,9 @@ class Restaurants extends Component {
           <div className="item"> <img src="assets/img/slider/slider_02.jpg" className="img-responsive"/>
             <div className="container">
               <div className="carousel-caption">
-                <h1>{this.state.restaurant.userRestaurantName}</h1>
+                <h1 className="carousel-caption">{this.state.restaurant.userRestaurantName}</h1>
                 {/* <h1 id="userRestaurantName2"><span>Name of Your Restaurant Goes Here</span></h1> */}
-                <p>{this.state.restaurant.userRestaurantTagline}</p>
+                <p className="carousel-caption">{this.state.restaurant.userRestaurantTagline}</p>
                 {/* <p id="userRestaurantTagline2"><span>Add a tagline to draw customers in!</span></p> */}
               </div>
             </div>
@@ -140,9 +146,9 @@ class Restaurants extends Component {
           <div className="item"> <img src="assets/img/slider/slider_03.jpg" className="img-responsive"/>
             <div className="container">
               <div className="carousel-caption">
-              <h1>{this.state.restaurant.userRestaurantName}</h1>
+              <h1 className="carousel-caption">{this.state.restaurant.userRestaurantName}</h1>
                 {/* <h1 id="userRestaurantName3"><span>Name of Your Restaurant Goes Here</span></h1> */}
-                <p>{this.state.restaurant.userRestaurantTagline}</p>
+                <p className="carousel-caption">{this.state.restaurant.userRestaurantTagline}</p>
                 {/* <p id="userRestaurantTagline3"><span>Add a tagline to draw customers in!</span></p> */}
               </div>
             </div>
@@ -161,10 +167,10 @@ class Restaurants extends Component {
       <div className="gap"></div>
       <div className="col-md-6">
         <div className="about-content">
-          Welcome to <span>{this.state.restaurant.userRestaurantName}</span>
+          Welcome to <span className="about-content">{this.state.restaurant.userRestaurantName}</span>
           {/* <h4>Welcome to <span id="userRestaurantName4">Name of Your Restaurant Goes Here</span></h4> */}
           <EditableContent handleSubmit={this.handleSubmit} propertyName="userRestaurantAboutText" restaurantObject={this.state.restaurant}>
-            <p>{this.state.restaurant.userRestaurantAboutText}</p>
+            <p className="about-content">{this.state.restaurant.userRestaurantAboutText}</p>
           </EditableContent>
           {/* <p id="userRestaurantAboutText1">Lorem ipsum dolor sit amet sale referrentur Aliquid abhorreant cu vim, veri cetero e mel
             sea ne nostro communet veri eripuit Lorem ipsum dolor sit amet sale referrentur Aliquid abhorreant cu vim,
@@ -195,9 +201,9 @@ class Restaurants extends Component {
           <div className="clearfix"></div>
           <div className="title-line"></div>
           <ul id="filters" className="clearfix">
-            <EditableContent handleSubmit={this.handleSubmit} propertyName="userAppetizerHeader" restaurantObject={this.state.restaurant}>
-            <li><span className="filter" data-filter=".Appetizers">{this.state.restaurant.userAppetizerHeader}</span></li>
-            </EditableContent>
+          <EditableContent handleSubmit={this.handleSubmit} propertyName="userAppetizerHeader" restaurantObject={this.state.restaurant}>
+                <span className="filter" data-filter=".Appetizers">{this.state.restaurant.userAppetizerHeader}</span>
+                </EditableContent>
             {/* <li><span id="userAppetizerHeader" className="filter" data-filter=".Appetizers">Appetizers</span></li> */}
             <li><span id="userSaladsHeader" className="filter" data-filter=".Salads">Soup and Salads</span></li>
             <li><span id="userMainsHeader" className="filter" data-filter=".Soups">Mains</span></li>
@@ -207,9 +213,18 @@ class Restaurants extends Component {
             <div className="menu Appetizers">
               <div className="col-md-12">
                 <div className="food-item">
-                  <h3 id="userAppetizerOneName" className="food-name"><a href="#">Appetizer 1</a></h3>
-                  <p id="userAppetizerOneDescription" className="food-info">Use this space to describe the dish, including ingredients.</p>
-                  <p id="userAppetizerOnePrice" className="food-price">$9.95</p>
+                <EditableContent handleSubmit={this.handleSubmit} propertyName="userAppetizerOneName" restaurantObject={this.state.restaurant}>
+                <h3 className="food-name">{this.state.restaurant.userAppetizerOneName}</h3>
+                </EditableContent>
+                  {/* <h3 id="userAppetizerOneName" className="food-name"><a href="#">Appetizer 1</a></h3> */}
+                  <EditableContent handleSubmit={this.handleSubmit} propertyName="userAppetizerOneDescription" restaurantObject={this.state.restaurant}>
+                  <p className="food-info">{this.state.restaurant.userAppetizerOneDescription}</p>
+                  </EditableContent>
+                  {/* <p id="userAppetizerOneDescription" className="food-info">Use this space to describe the dish, including ingredients.</p> */}
+                  <EditableContent handleSubmit={this.handleSubmit} propertyName="userAppetizerOnePrice" restaurantObject={this.state.restaurant}>
+                  <p className="food-price">{this.state.restaurant.userAppetizerOnePrice}</p>
+                  </EditableContent>
+                  {/* <p id="userAppetizerOnePrice" className="food-price">$9.95</p> */}
                 </div>
               </div>
               <div className="col-md-12">
@@ -423,9 +438,18 @@ class Restaurants extends Component {
       <div className="col-md-6">
         <h2>CONTACT US</h2>
         <ul className="contact-infomation">
-          <li><i className="fa fa-map-marker" id="userRestaurantAddress" aria-hidden="true"></i>Your Restaurant Address</li>
-          <li><i className="fa fa-phone" id="userNumber" aria-hidden="true"></i>+00 000 000000</li>
-          <li><i className="fa fa-envelope-o" id="userEmail" aria-hidden="true"></i>info@myrestaurant.com</li>
+        <EditableContent handleSubmit={this.handleSubmit} propertyName="userRestaurantAddress" restaurantObject={this.state.restaurant}>
+            <li className="fa fa-map-marker" aria-hidden="true">{this.state.restaurant.userRestaurantAddress}</li>
+            </EditableContent>
+          {/* <li><i className="fa fa-map-marker" id="userRestaurantAddress" aria-hidden="true"></i>Your Restaurant Address</li> */}
+          <EditableContent handleSubmit={this.handleSubmit} propertyName="userNumber" restaurantObject={this.state.restaurant}>
+          <li className="fa fa-phone" aria-hidden="true">{this.state.restaurant.userNumber}</li>
+          </EditableContent>
+          {/* <li><i className="fa fa-phone" id="userNumber" aria-hidden="true"></i>000 000 00000</li> */}
+          <EditableContent handleSubmit={this.handleSubmit} propertyName="userEmail" restaurantObject={this.state.restaurant}>
+          <li className="fa fa-envelope-o" aria-hidden="true">{this.state.restaurant.userEmail}</li>
+          </EditableContent>
+          {/* <li><i className="fa fa-envelope-o" id="userEmail" aria-hidden="true"></i>info@myrestaurant.com</li> */}
         </ul>
         <ul className="socials-footer">
           <li> <a title="Facebook'" id="userRestaurantFacebook" target="_blank" href="#"> <i className="fa fa-facebook"></i> </a> </li>
@@ -434,8 +458,6 @@ class Restaurants extends Component {
         </ul>
         <div className="map">
         <div dangerouslySetInnerHTML={ {__html: '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d60470630.45233501!2d73.17308624999994!3d22.32210265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1470837312627" width="100%" height="200" frameborder="0" style={{border:0}} allowfullscreen></iframe>'} } />
-
-          
         </div>
       </div>
     </div>
@@ -444,7 +466,7 @@ class Restaurants extends Component {
   <div className="submit-section">
   <div dangerouslySetInnerHTML={ {__html: '<input className="submit-btn" id="userSubmit" onclick="submitFunction(id)" type="submit" name="submit" value="Submit" />'} } />
 
-    
+  
   </div>
 
                 <button type="button" className="form-submit" onClick={this.handleLogout.bind(this)}>Logout</button>
